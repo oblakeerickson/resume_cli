@@ -1,0 +1,19 @@
+name = "Blake Erickson"
+title = "Programmer"
+location = "Remote, US"
+email = "blake@example.com"
+website = "https://blake.app"
+
+[[experience]]
+company = "Current Company"
+role = "Programmer"
+start = "YYYY-MM"
+end = "YYYY-MM"
+summary = "I wrote code"
+
+[[experience]]
+company = "Previous Company"
+role = "Programmer"
+start = "YYYY-MM"
+end = "YYYY-MM"
+summary = "I wrote code then too"
