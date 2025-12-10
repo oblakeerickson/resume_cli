@@ -10,6 +10,7 @@ struct Resume {
     title: String,
     location: String,
     email: String,
+    website: Option<String>,
     #[serde(default)]
     experience: Vec<Experience>,
 }
@@ -96,6 +97,9 @@ fn print_resume(resume: &Resume) {
     println!("Title:    {}", resume.title);
     println!("Location: {}", resume.location);
     println!("Email:    {}", resume.email);
+    if let Some(website) = &resume.website {
+        println!("Website:  {}", website);
+    }
     println!();
     println!("Experience:");
     for exp in &resume.experience {
@@ -140,9 +144,14 @@ fn build_pdf(resume: &Resume, output_path: &str) -> Result<(), Box<dyn std::erro
             .styled(title_style),
     );
 
-    // Location + email
+    // Location + email + website
+    let contact_info = if let Some(website) = &resume.website {
+        format!("{} · {} · {}", resume.location, resume.email, website)
+    } else {
+        format!("{} · {}", resume.location, resume.email)
+    };
     layout.push(
-        elements::Paragraph::new(format!("{} · {}", resume.location, resume.email))
+        elements::Paragraph::new(contact_info)
             .aligned(genpdf::Alignment::Center),
     );
 
